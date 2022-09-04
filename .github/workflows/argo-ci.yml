@@ -1,36 +1,57 @@
-# ARGO Deployment
 name: Argo Deployment
 
 on:
   push:
-    branches:  [main]
-
+    branches: [ master ]
+  release:
+    types: [ created ]
 
 jobs:
-  dev:
+  DEV:
     runs-on: ubuntu-latest
-    environment: dev
     permissions:
       contents: read
       packages: write
-  qa:
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build and push container
+        run: |
+          echo "test"
+
+  QA:
+    needs: DEV
     runs-on: ubuntu-latest
-    needs: dev
-    environment: dev
     permissions:
       contents: read
       packages: write
-  staging:
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build and push container
+        run: |
+          echo "test"
+  STG:
+    needs:   QA
     runs-on: ubuntu-latest
-    needs:   qa
-    environment: dev
     permissions:
       contents: read
       packages: write
-  production:
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build and push container
+        run: |
+          echo "test"
+  PRD:
+    needs: STG
     runs-on: ubuntu-latest
-    needs: staging
-    environment: dev
     permissions:
       contents: read
       packages: write
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build and push container
+        run: |
+          echo "test"
