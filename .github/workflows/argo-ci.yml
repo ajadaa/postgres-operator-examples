@@ -1,0 +1,28 @@
+# ARGO Deployment
+name: Argo Deployment
+
+on:
+  release:
+    types: [released]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          token: ${{ secrets.GIT_TOKEN }}
+          repository: my-workforce/Kubernetes
+      - name: Setup Kustomize
+        uses: imranismail/setup-kustomize@v1
+        with:
+          kustomize-version: "3.6.1"
