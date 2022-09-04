@@ -7,22 +7,27 @@ on:
 
 
 jobs:
-  build:
+  dev:
     runs-on: ubuntu-latest
-    environment: production
+    environment: dev
     permissions:
       contents: read
       packages: write
-
-    steps:
-      - uses: actions/checkout@v3
-      - name: Check out code
-        uses: actions/checkout@v3
-        with:
-          ref: main
-          token: ${{ secrets.GIT_TOKEN }}
-          repository: my-workforce/Kubernetes
-      - name: Setup Kustomize
-        uses: imranismail/setup-kustomize@v1
-        with:
-          kustomize-version: "3.6.1"
+  qa:
+    runs-on: ubuntu-latest
+    environment: dev
+    permissions:
+      contents: read
+      packages: write
+  staging:
+    runs-on: ubuntu-latest
+    environment: dev
+    permissions:
+      contents: read
+      packages: write
+  production:
+    runs-on: ubuntu-latest
+    environment: dev
+    permissions:
+      contents: read
+      packages: write
