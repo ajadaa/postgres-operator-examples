@@ -2,8 +2,8 @@
 name: Argo Deployment
 
 on:
-  release:
-    types: [released]
+  push:
+    branches:  [main]
 
 
 jobs:
