@@ -8,6 +8,7 @@ on:
 
 jobs:
   DEV:
+    environment: DEV
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -20,6 +21,7 @@ jobs:
           echo "test"
 
   QA:
+    environment: QA
     needs: DEV
     runs-on: ubuntu-latest
     permissions:
@@ -32,7 +34,8 @@ jobs:
         run: |
           echo "test"
   STG:
-    needs:   QA
+    environment: STG
+    needs: QA
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -44,6 +47,7 @@ jobs:
         run: |
           echo "test"
   PRD:
+    environment: PRD
     needs: STG
     runs-on: ubuntu-latest
     permissions:
