@@ -2,9 +2,8 @@ name: Argo Deployment
 
 on:
   push:
-    branches: [ main ]
-  release:
-    types: [ created ]
+    tags:
+      - wasfaty.release.**
 
 jobs:
   DEV:
