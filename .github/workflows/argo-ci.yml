@@ -2,8 +2,7 @@ name: Argo Deployment
 
 on:
   push:
-    tags:
-      - wasfaty.release.**
+
 
 jobs:
   DEV:
