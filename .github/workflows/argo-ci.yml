@@ -16,8 +16,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Build and push container
         run: |
-          sed -i 's/SERVER_URL\=.*/LIST=https://api.wasfatyplus.com/' .env
-          cat 
+          sed -i -e 's|^\(BASE_URL=\).*|\${BASE_SERVER_URL}/wunder-graph/main/graphql|; s|^\(SERVER_URL=\).*|\https://api.wasfatyplus.com|' .env
+          cat .env
 
   QA:
     environment: QA
