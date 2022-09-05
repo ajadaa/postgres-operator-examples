@@ -16,7 +16,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Build and push container
         run: |
-          echo "$SERVER_URL"
+          sed -i 's/SERVER_URL\=.*/LIST=https://api.wasfatyplus.com/' .env
+          cat 
 
   QA:
     environment: QA
